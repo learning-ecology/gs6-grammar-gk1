@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English 6 - Grammar Review Test 2</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Google Fonts: Inter & Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Fredoka', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-border {
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+    .badge-correct {
+      background-color: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .badge-wrong {
+      background-color: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen antialiased">
+
+  <!-- Main Container -->
+  <div class="max-w-4xl mx-auto px-4 py-8 sm:px-6">
+
+    <!-- Top Header Banner -->
+    <header class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-6 print-border">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-6">
+        <div class="flex items-center gap-4 text-center md:text-left">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner">
+            <i class="fa-solid fa-feather-pointed"></i>
+          </div>
+          <div>
+            <span class="inline-block px-3 py-1 bg-violet-100 text-violet-800 text-xs font-semibold rounded-full uppercase tracking-wider mb-1">
+              Practice Set 2 • Grade 6
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-heading text-slate-800">English Grammar Challenge</h1>
+          </div>
+        </div>
+
+        <!-- Timer & Controls (No-Print) -->
+        <div class="flex items-center gap-3 no-print">
+          <div class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-slate-700 font-medium text-sm">
+            <i class="fa-regular fa-clock text-indigo-500"></i>
+            <span id="timerDisplay">00:00</span>
+          </div>
+          <button id="toggleTimerBtn" onclick="toggleTimer()" title="Pause/Resume Timer" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition">
+            <i id="timerIcon" class="fa-solid fa-pause"></i>
+          </button>
+          <button onclick="window.print()" title="Print Worksheet" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition">
+            <i class="fa-solid fa-print"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Student Info Form Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Student Name</label>
+          <input type="text" id="studentName" placeholder="Full name..." class="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Class</label>
+          <input type="text" id="studentClass" placeholder="e.g. 6B" class="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Date</label>
+          <input type="date" id="studentDate" class="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white text-sm">
+        </div>
+      </div>
+
+      <!-- Grammar Topics Badge List -->
+      <div class="mt-5 flex flex-wrap items-center gap-2 pt-4 border-t border-slate-100">
+        <span class="text-xs font-medium text-slate-500 mr-1">Reviewing:</span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg font-medium border border-blue-100">Routine Verbs (do/play/have/study)</span>
+        <span class="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs rounded-lg font-medium border border-amber-100">Adverbs of Frequency</span>
+        <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs rounded-lg font-medium border border-emerald-100">Possessive Case ('s & s')</span>
+        <span class="px-2.5 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium border border-purple-100">Prepositions of Place</span>
+        <span class="px-2.5 py-1 bg-pink-50 text-pink-700 text-xs rounded-lg font-medium border border-pink-100">Present Continuous</span>
+      </div>
+    </header>
+
+    <!-- Score Summary Banner (Shown after Submit) -->
+    <div id="resultsCard" class="hidden mb-6 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm print-border">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div id="scoreCircle" class="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading text-2xl font-bold bg-indigo-600 shadow-md">
+            0%
+          </div>
+          <div>
+            <h3 id="resultTitle" class="text-lg font-heading font-semibold text-slate-800">Quiz Submitted!</h3>
+            <p id="resultSubtitle" class="text-sm text-slate-500">You scored <span id="earnedPoints" class="font-bold text-slate-700">0</span> out of <span id="totalPoints">24</span> points.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="toggleAnswerKeyModal(true)" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium text-sm rounded-xl transition flex items-center gap-2">
+            <i class="fa-regular fa-lightbulb"></i> View Solutions
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Form -->
+    <form id="grammarForm" onsubmit="event.preventDefault(); evaluateQuiz();">
+
+      <!-- ================= PART 1: MULTIPLE CHOICE ================= -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-6 print-border">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-indigo-500 text-white font-heading font-bold flex items-center justify-center text-sm">1</span>
+            <h2 class="text-lg sm:text-xl font-heading font-semibold text-slate-800">Part 1: Multiple Choice</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">8 Points</span>
+        </div>
+        <p class="text-sm text-slate-500 mb-6 italic">Choose the correct answer (A, B, C, or D) to complete each sentence.</p>
+
+        <div class="space-y-6">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-1">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">1. We always __________ judo in the school gym on Thursday afternoons.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc1" value="A" class="text-indigo-600 mr-2.5"> A. do
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc1" value="B" class="text-indigo-600 mr-2.5"> B. play
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc1" value="C" class="text-indigo-600 mr-2.5"> C. make
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc1" value="D" class="text-indigo-600 mr-2.5"> D. study
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-2">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">2. Hurry up! The school bus __________ outside right now.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc2" value="A" class="text-indigo-600 mr-2.5"> A. waits
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc2" value="B" class="text-indigo-600 mr-2.5"> B. is waiting
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc2" value="C" class="text-indigo-600 mr-2.5"> C. are waiting
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc2" value="D" class="text-indigo-600 mr-2.5"> D. wait
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-3">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">3. Our bakery is right __________ the bookstore. You just cross the narrow street to get there.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc3" value="A" class="text-indigo-600 mr-2.5"> A. between
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc3" value="B" class="text-indigo-600 mr-2.5"> B. under
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc3" value="C" class="text-indigo-600 mr-2.5"> C. opposite
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc3" value="D" class="text-indigo-600 mr-2.5"> D. behind of
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-4">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">4. My twin sisters share one room. It is the __________ room.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc4" value="A" class="text-indigo-600 mr-2.5"> A. girls'
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc4" value="B" class="text-indigo-600 mr-2.5"> B. girl's
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc4" value="C" class="text-indigo-600 mr-2.5"> C. girls's
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc4" value="D" class="text-indigo-600 mr-2.5"> D. girls
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-5">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">5. Linh is a very hardworking student. She __________ finishes her homework before dinner.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc5" value="A" class="text-indigo-600 mr-2.5"> A. rarely
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc5" value="B" class="text-indigo-600 mr-2.5"> B. never
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc5" value="C" class="text-indigo-600 mr-2.5"> C. always
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc5" value="D" class="text-indigo-600 mr-2.5"> D. hardly ever
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-6">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">6. Look at the kitten! It __________ up that tall tree.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc6" value="A" class="text-indigo-600 mr-2.5"> A. climbs
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc6" value="B" class="text-indigo-600 mr-2.5"> B. is climbing
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc6" value="C" class="text-indigo-600 mr-2.5"> C. are climbing
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc6" value="D" class="text-indigo-600 mr-2.5"> D. climb
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 7 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-7">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">7. There is a comfortable reading chair __________ the window and the wardrobe.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc7" value="A" class="text-indigo-600 mr-2.5"> A. next
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc7" value="B" class="text-indigo-600 mr-2.5"> B. between
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc7" value="C" class="text-indigo-600 mr-2.5"> C. among
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc7" value="D" class="text-indigo-600 mr-2.5"> D. on
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 8 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mc-8">
+            <div class="flex justify-between items-start mb-3">
+              <p class="font-medium text-slate-800 text-sm sm:text-base">8. "__________ at present?" – "No, they are chatting in the cafeteria."</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc8" value="A" class="text-indigo-600 mr-2.5"> A. Do they study
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc8" value="B" class="text-indigo-600 mr-2.5"> B. Are they studying
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc8" value="C" class="text-indigo-600 mr-2.5"> C. Are they study
+              </label>
+              <label class="flex items-center p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+                <input type="radio" name="mc8" value="D" class="text-indigo-600 mr-2.5"> D. Is they studying
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART 2: VERB TENSES ================= -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-6 print-border">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-emerald-500 text-white font-heading font-bold flex items-center justify-center text-sm">2</span>
+            <h2 class="text-lg sm:text-xl font-heading font-semibold text-slate-800">Part 2: Verb Tenses</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">7 Points</span>
+        </div>
+        <p class="text-sm text-slate-500 mb-6 italic">Write the correct form of the verbs: <strong>Present Simple</strong> or <strong>Present Continuous</strong>.</p>
+
+        <div class="space-y-4">
+          <!-- Item 1 -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-1">
+            <div class="text-sm sm:text-base leading-relaxed">
+              1. My best friend Phong 
+              <input type="text" id="tense1" placeholder="(have)" class="w-32 px-2.5 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              breakfast at 6:30 AM every day.
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-2">
+            <div class="text-sm sm:text-base leading-relaxed">
+              2. Listen carefully! Somebody 
+              <input type="text" id="tense2" placeholder="(knock)" class="w-36 px-2.5 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              at our front door.
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-3">
+            <div class="text-sm sm:text-base leading-relaxed">
+              3. We (not do) 
+              <input type="text" id="tense3" placeholder="(not do)" class="w-36 px-2.5 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              science projects on Sundays.
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-4">
+            <div class="text-sm sm:text-base leading-relaxed">
+              4. Where is your mother? – She 
+              <input type="text" id="tense4" placeholder="(cook)" class="w-36 px-2.5 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              dinner in the kitchen now.
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-5">
+            <div class="text-sm sm:text-base leading-relaxed">
+              5. 
+              <input type="text" id="tense5" placeholder="(Mai / play)" class="w-48 px-2.5 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              badminton in the playground right now?
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+
+          <!-- Item 6 (2 blanks) -->
+          <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" id="q-tense-6">
+            <div class="text-sm sm:text-base leading-relaxed">
+              6. Nam usually (walk) 
+              <input type="text" id="tense6a" placeholder="(walk)" class="w-28 px-2 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              to school, but today he (ride) 
+              <input type="text" id="tense6b" placeholder="(ride)" class="w-36 px-2 py-1 text-center bg-white border border-slate-300 rounded-lg text-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              his bicycle.
+            </div>
+            <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART 3: SENTENCE REWRITING ================= -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-6 print-border">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-violet-500 text-white font-heading font-bold flex items-center justify-center text-sm">3</span>
+            <h2 class="text-lg sm:text-xl font-heading font-semibold text-slate-800">Part 3: Sentence Rewriting</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">5 Points</span>
+        </div>
+        <p class="text-sm text-slate-500 mb-6 italic">Rewrite each sentence using the provided clue in brackets.</p>
+
+        <div class="space-y-5">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-rew-1">
+            <div class="flex justify-between items-start mb-2">
+              <p class="text-sm font-medium text-slate-800">1. My brother is late for school. <span class="text-violet-600 font-semibold">(Insert adverb: "never")</span></p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-slate-400">&rarr;</span>
+              <input type="text" id="rewrite1" placeholder="Type sentence here..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-rew-2">
+            <div class="flex justify-between items-start mb-2">
+              <p class="text-sm font-medium text-slate-800">2. The flower garden is behind the house. <span class="text-violet-600 font-semibold">(Rewrite using: "in front of")</span></p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-slate-400">&rarr;</span>
+              <input type="text" id="rewrite2" placeholder="The house is..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-rew-3">
+            <div class="flex justify-between items-start mb-2">
+              <p class="text-sm font-medium text-slate-800">3. This computer belongs to my teacher. <span class="text-violet-600 font-semibold">(Use possessive case: 's)</span></p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-slate-400">&rarr;</span>
+              <input type="text" id="rewrite3" placeholder="This is..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-rew-4">
+            <div class="flex justify-between items-start mb-2">
+              <p class="text-sm font-medium text-slate-800">4. They do homework after dinner from Monday to Friday. <span class="text-violet-600 font-semibold">(Insert adverb: "usually")</span></p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-slate-400">&rarr;</span>
+              <input type="text" id="rewrite4" placeholder="Type sentence here..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-rew-5">
+            <div class="flex justify-between items-start mb-2">
+              <p class="text-sm font-medium text-slate-800">5. Where is the clock? <span class="text-violet-600 font-semibold">(Use preposition: on the wall)</span></p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-slate-400">&rarr;</span>
+              <input type="text" id="rewrite5" placeholder="The clock is..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART 4: ERROR CORRECTION ================= -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8 print-border">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-heading font-bold flex items-center justify-center text-sm">4</span>
+            <h2 class="text-lg sm:text-xl font-heading font-semibold text-slate-800">Part 4: Find & Correct the Mistake</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">4 Points</span>
+        </div>
+        <p class="text-sm text-slate-500 mb-6 italic">Read each sentence carefully, identify the mistake, and write the correction.</p>
+
+        <div class="space-y-4">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mist-1">
+            <div class="flex justify-between items-start mb-3">
+              <p class="text-sm font-medium text-slate-800">1. He is usually having lunch at twelve o'clock.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Mistake:</label>
+                <input type="text" id="mistake1" placeholder="Type the mistake here" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Correction:</label>
+                <input type="text" id="correct1" placeholder="Type the correct word(s)" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mist-2">
+            <div class="flex justify-between items-start mb-3">
+              <p class="text-sm font-medium text-slate-800">2. That red car is my uncle's Tom new vehicle.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Mistake:</label>
+                <input type="text" id="mistake2" placeholder="Type the mistake here" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Correction:</label>
+                <input type="text" id="correct2" placeholder="Type the correct word(s)" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mist-3">
+            <div class="flex justify-between items-start mb-3">
+              <p class="text-sm font-medium text-slate-800">3. There are two posters in the wall above my bed.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Mistake:</label>
+                <input type="text" id="mistake3" placeholder="Type the mistake here" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Correction:</label>
+                <input type="text" id="correct3" placeholder="Type the correct word(s)" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/50" id="q-mist-4">
+            <div class="flex justify-between items-start mb-3">
+              <p class="text-sm font-medium text-slate-800">4. Listen! The bird sings a sweet melody in the garden.</p>
+              <span class="feedback-badge hidden text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0"></span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Mistake:</label>
+                <input type="text" id="mistake4" placeholder="Type the mistake here" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Correction:</label>
+                <input type="text" id="correct4" placeholder="Type the correct word(s)" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Control Actions (No Print) -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm no-print">
+        <button type="button" onclick="resetForm()" class="w-full sm:w-auto px-5 py-2.5 text-slate-600 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium text-sm transition">
+          <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset Questions
+        </button>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button type="button" onclick="toggleAnswerKeyModal(true)" class="w-full sm:w-auto px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl font-medium text-sm transition">
+            <i class="fa-regular fa-lightbulb mr-2"></i> View Answer Key
+          </button>
+          <button type="submit" class="w-full sm:w-auto px-7 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-indigo-200 transition">
+            <i class="fa-solid fa-check mr-2"></i> Check Answers
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Answer Key & Explanations Modal -->
+  <div id="answersModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-heading font-semibold text-slate-800">Answer Key & Explanations (Set 2)</h3>
+            <p class="text-xs text-slate-500">Grade 6 English Syllabus Reference</p>
+          </div>
+        </div>
+        <button onclick="toggleAnswerKeyModal(false)" class="text-slate-400 hover:text-slate-600 text-xl p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-6 text-sm text-slate-700">
+        <!-- Part 1 -->
+        <div>
+          <h4 class="font-heading font-semibold text-indigo-600 border-b border-indigo-100 pb-1 mb-2">Part 1: Multiple Choice</h4>
+          <ul class="space-y-1.5 list-disc pl-5">
+            <li><strong>1. A. do</strong> — Collocation: we say <em>do judo</em>, <em>do karate</em>, but <em>play football</em>.</li>
+            <li><strong>2. B. is waiting</strong> — "Hurry up!" and "right now" show an event taking place this moment (Present Continuous).</li>
+            <li><strong>3. C. opposite</strong> — Facing directly across the street = opposite.</li>
+            <li><strong>4. A. girls'</strong> — Plural regular noun (the girls) ending in -s takes only an apostrophe for possession.</li>
+            <li><strong>5. C. always</strong> — "very hardworking" implies high regularity (always finishes homework).</li>
+            <li><strong>6. B. is climbing</strong> — "Look at the kitten!" indicates action in progress.</li>
+            <li><strong>7. B. between</strong> — Followed by "and" (between the window and the wardrobe).</li>
+            <li><strong>8. B. Are they studying</strong> — Question form in Present Continuous signaled by "at present".</li>
+          </ul>
+        </div>
+
+        <!-- Part 2 -->
+        <div>
+          <h4 class="font-heading font-semibold text-emerald-600 border-b border-emerald-100 pb-1 mb-2">Part 2: Verb Tenses</h4>
+          <ul class="space-y-1.5 list-disc pl-5">
+            <li><strong>1. has</strong> — Routine daily schedule with 3rd-person singular "Phong".</li>
+            <li><strong>2. is knocking</strong> — "Listen carefully!" signals an immediate action.</li>
+            <li><strong>3. don't do</strong> / <strong>do not have</strong> — Negative routine with subject "We".</li>
+            <li><strong>4. is cooking</strong> — "Where is your mother? ... now" indicates ongoing action.</li>
+            <li><strong>5. Is Mai playing</strong> — Present Continuous yes/no question with singular subject "Mai".</li>
+            <li><strong>6. walks / is riding</strong> — Usual habit ("usually") contrasted with today's action ("today").</li>
+          </ul>
+        </div>
+
+        <!-- Part 3 -->
+        <div>
+          <h4 class="font-heading font-semibold text-violet-600 border-b border-violet-100 pb-1 mb-2">Part 3: Sentence Rewriting</h4>
+          <ul class="space-y-1.5 list-disc pl-5">
+            <li><strong>1.</strong> My brother is <strong>never late</strong> for school. (Adverbs of frequency come *after* the verb 'to be').</li>
+            <li><strong>2.</strong> The house is <strong>in front of</strong> the flower garden. (Opposite of 'behind').</li>
+            <li><strong>3.</strong> This is <strong>my teacher's computer</strong>. (Possessive 's applied to the owner).</li>
+            <li><strong>4.</strong> They <strong>usually do</strong> homework after dinner from Monday to Friday.</li>
+            <li><strong>5.</strong> The clock is <strong>on the wall</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Part 4 -->
+        <div>
+          <h4 class="font-heading font-semibold text-amber-600 border-b border-amber-100 pb-1 mb-2">Part 4: Error Correction</h4>
+          <ul class="space-y-1.5 list-disc pl-5">
+            <li><strong>1.</strong> Mistake: <strong>is usually having</strong> &rarr; Correction: <strong>usually has</strong> (daily routine uses Present Simple).</li>
+            <li><strong>2.</strong> Mistake: <strong>uncle's Tom</strong> &rarr; Correction: <strong>Uncle Tom's</strong> (the apostrophe belongs to the end of the full title/name).</li>
+            <li><strong>3.</strong> Mistake: <strong>in</strong> &rarr; Correction: <strong>on</strong> (things hang <em>on</em> a vertical wall surface).</li>
+            <li><strong>4.</strong> Mistake: <strong>sings</strong> &rarr; Correction: <strong>is singing</strong> ("Listen!" triggers Present Continuous).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+        <button onclick="toggleAnswerKeyModal(false)" class="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-medium text-sm rounded-xl transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set default date to today
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      const dateEl = document.getElementById('studentDate');
+      if (dateEl) dateEl.value = today;
+    });
+
+    // Stopwatch logic
+    let secondsElapsed = 0;
+    let timerRunning = true;
+    const timerInterval = setInterval(() => {
+      if (timerRunning) {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+      }
+    }, 1000);
+
+    function toggleTimer() {
+      timerRunning = !timerRunning;
+      const icon = document.getElementById('timerIcon');
+      if (timerRunning) {
+        icon.className = 'fa-solid fa-pause';
+      } else {
+        icon.className = 'fa-solid fa-play';
+      }
+    }
+
+    // Modal display toggle
+    function toggleAnswerKeyModal(show) {
+      const modal = document.getElementById('answersModal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    // Normalization helper
+    const clean = (str) => {
+      return (str || '')
+        .toLowerCase()
+        .replace(/[.,/#!$%^&*;:{}=\-_`~()?]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    };
+
+    // Main evaluation function
+    function evaluateQuiz() {
+      let score = 0;
+      const totalScore = 24;
+
+      // Part 1: Multiple Choice
+      const mcKeys = {
+        mc1: 'A',
+        mc2: 'B',
+        mc3: 'C',
+        mc4: 'A',
+        mc5: 'C',
+        mc6: 'B',
+        mc7: 'B',
+        mc8: 'B'
+      };
+
+      for (let i = 1; i <= 8; i++) {
+        const qContainer = document.getElementById(`q-mc-${i}`);
+        const badge = qContainer.querySelector('.feedback-badge');
+        const selected = document.querySelector(`input[name="mc${i}"]:checked`);
+        badge.classList.remove('hidden', 'badge-correct', 'badge-wrong');
+
+        if (selected && selected.value === mcKeys[`mc${i}`]) {
+          score++;
+          badge.classList.add('badge-correct');
+          badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct';
+        } else {
+          badge.classList.add('badge-wrong');
+          badge.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> Ans: ${mcKeys[`mc${i}`]}`;
+        }
+      }
+
+      // Part 2: Verb Tenses
+      const tenseAnswers = {
+        tense1: ['has'],
+        tense2: ['is knocking'],
+        tense3: ["dont do", "don't do", "do not do"],
+        tense4: ['is cooking'],
+        tense5: ['is mai playing'],
+        tense6a: ['walks'],
+        tense6b: ['is riding']
+      };
+
+      for (let i = 1; i <= 5; i++) {
+        const val = clean(document.getElementById(`tense${i}`).value);
+        const qContainer = document.getElementById(`q-tense-${i}`);
+        const badge = qContainer.querySelector('.feedback-badge');
+        badge.classList.remove('hidden', 'badge-correct', 'badge-wrong');
+
+        if (tenseAnswers[`tense${i}`].includes(val)) {
+          score++;
+          badge.classList.add('badge-correct');
+          badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct';
+        } else {
+          badge.classList.add('badge-wrong');
+          badge.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> ${tenseAnswers[`tense${i}`][0]}`;
+        }
+      }
+
+      // Question 6 (walks / is riding)
+      const val6a = clean(document.getElementById('tense6a').value);
+      const val6b = clean(document.getElementById('tense6b').value);
+      const container6 = document.getElementById('q-tense-6');
+      const badge6 = container6.querySelector('.feedback-badge');
+      badge6.classList.remove('hidden', 'badge-correct', 'badge-wrong');
+
+      let pt6 = 0;
+      if (tenseAnswers.tense6a.includes(val6a)) pt6++;
+      if (tenseAnswers.tense6b.includes(val6b)) pt6++;
+      score += pt6;
+
+      if (pt6 === 2) {
+        badge6.classList.add('badge-correct');
+        badge6.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct (2/2)';
+      } else {
+        badge6.classList.add('badge-wrong');
+        badge6.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> walks / is riding (${pt6}/2)`;
+      }
+
+      // Part 3: Sentence Rewriting
+      const rewriteTests = [
+        {
+          id: 'rewrite1',
+          container: 'q-rew-1',
+          test: (val) => val.includes('never late for school'),
+          suggested: 'My brother is never late for school.'
+        },
+        {
+          id: 'rewrite2',
+          container: 'q-rew-2',
+          test: (val) => val.includes('in front of the flower garden') || val.includes('in front of the garden'),
+          suggested: 'The house is in front of the flower garden.'
+        },
+        {
+          id: 'rewrite3',
+          container: 'q-rew-3',
+          test: (val) => (val.includes("teacher's computer") || val.includes("teachers computer")),
+          suggested: "This is my teacher's computer."
+        },
+        {
+          id: 'rewrite4',
+          container: 'q-rew-4',
+          test: (val) => val.includes('usually do') && val.includes('homework'),
+          suggested: 'They usually do homework after dinner from Monday to Friday.'
+        },
+        {
+          id: 'rewrite5',
+          container: 'q-rew-5',
+          test: (val) => val.includes('on the wall'),
+          suggested: 'The clock is on the wall.'
+        }
+      ];
+
+      rewriteTests.forEach(item => {
+        const val = clean(document.getElementById(item.id).value);
+        const container = document.getElementById(item.container);
+        const badge = container.querySelector('.feedback-badge');
+        badge.classList.remove('hidden', 'badge-correct', 'badge-wrong');
+
+        if (item.test(val)) {
+          score++;
+          badge.classList.add('badge-correct');
+          badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct';
+        } else {
+          badge.classList.add('badge-wrong');
+          badge.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> Ex: "${item.suggested}"`;
+        }
+      });
+
+      // Part 4: Find & Correct the Mistake
+      const mistakes = [
+        {
+          mId: 'mistake1',
+          cId: 'correct1',
+          container: 'q-mist-1',
+          mCheck: ['is usually having', 'usually having', 'having'],
+          cCheck: ['usually has', 'has'],
+          ans: 'is usually having → usually has'
+        },
+        {
+          mId: 'mistake2',
+          cId: 'correct2',
+          container: 'q-mist-2',
+          mCheck: ["uncle's tom", "uncles tom"],
+          cCheck: ["uncle tom's", "uncle toms", "tom's", "toms"],
+          ans: "uncle's Tom → Uncle Tom's"
+        },
+        {
+          mId: 'mistake3',
+          cId: 'correct3',
+          container: 'q-mist-3',
+          mCheck: ['in'],
+          cCheck: ['on'],
+          ans: 'in → on'
+        },
+        {
+          mId: 'mistake4',
+          cId: 'correct4',
+          container: 'q-mist-4',
+          mCheck: ['sings'],
+          cCheck: ['is singing'],
+          ans: 'sings → is singing'
+        }
+      ];
+
+      mistakes.forEach(item => {
+        const mVal = clean(document.getElementById(item.mId).value);
+        const cVal = clean(document.getElementById(item.cId).value);
+        const container = document.getElementById(item.container);
+        const badge = container.querySelector('.feedback-badge');
+        badge.classList.remove('hidden', 'badge-correct', 'badge-wrong');
+
+        const mPass = item.mCheck.some(k => mVal.includes(k));
+        const cPass = item.cCheck.some(k => cVal.includes(k));
+
+        if (mPass && cPass) {
+          score++;
+          badge.classList.add('badge-correct');
+          badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct';
+        } else {
+          badge.classList.add('badge-wrong');
+          badge.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> ${item.ans}`;
+        }
+      });
+
+      // Score Summary banner
+      const percentage = Math.round((score / totalScore) * 100);
+      const resultsCard = document.getElementById('resultsCard');
+      const scoreCircle = document.getElementById('scoreCircle');
+      const earnedPoints = document.getElementById('earnedPoints');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultSubtitle = document.getElementById('resultSubtitle');
+
+      earnedPoints.innerText = score;
+      scoreCircle.innerText = `${percentage}%`;
+
+      if (percentage >= 85) {
+        scoreCircle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading text-2xl font-bold bg-emerald-600 shadow-md';
+        resultTitle.innerText = 'Superb Job! 🌟';
+        resultSubtitle.innerHTML = `Great job! You mastered this set with <strong>${score}</strong> out of ${totalScore} points.`;
+      } else if (percentage >= 60) {
+        scoreCircle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading text-2xl font-bold bg-indigo-600 shadow-md';
+        resultTitle.innerText = 'Well Done! 👍';
+        resultSubtitle.innerHTML = `Solid work! Review the explanations below to turn your mistakes into strengths.`;
+      } else {
+        scoreCircle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading text-2xl font-bold bg-amber-500 shadow-md';
+        resultTitle.innerText = 'Keep Going! 💪';
+        resultSubtitle.innerHTML = `Check your errors and look over the Answer Key notes to master the rules.`;
+      }
+
+      resultsCard.classList.remove('hidden');
+      resultsCard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset Form
+    function resetForm() {
+      document.getElementById('grammarForm').reset();
+      document.querySelectorAll('.feedback-badge').forEach(b => {
+        b.classList.add('hidden');
+        b.innerHTML = '';
+      });
+      document.getElementById('resultsCard').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
